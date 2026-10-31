@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Собствен сайт за вашата къща за гости — готов за преглед до 72 часа | Къща Кръстопът</title>
+<meta name="description" content="Сайт на 4 езика за малки къщи за гости. Формата подготвя запитването, а гостът го изпраща от своя Viber, WhatsApp или имейл директно до вас, без комисиона. Плащате след одобрение.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Къща Кръстопът">
+<meta property="og:title" content="Собствен сайт за вашата къща за гости — готов за преглед до 72 часа">
+<meta property="og:description" content="Гостите ви пишат директно, без комисиона. Сайт на български, английски, турски и гръцки. Плащате след като одобрите готовия сайт.">
+<meta property="og:image" content="https://veselin9931.github.io/guesthouse-web/offer/img/demo-desktop.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="750">
+<!-- og:url: set to the published address before sharing, e.g. https://USER.github.io/REPO/offer/ -->
+<meta property="og:url" content="https://veselin9931.github.io/guesthouse-web/offer/">
+<meta property="og:locale" content="bg_BG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#292524">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --color-primary: #292524;
+    --color-accent: #9a4a2a;
+    --color-bg: #faf8f5;
+    --color-text: #1c1917;
+    --color-surface: #f2efeb;
+    --color-border: #e1dcd6;
+    --color-muted: #57524e;
+    --color-on-dark-muted: #d6d1cb;
+    --font-heading: Literata, Georgia, serif;
+    --font-body: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --radius: 1rem;
+    --radius-lg: 1.5rem;
+    --gutter: clamp(1.25rem, 4vw, 2rem);
+    --section-space: clamp(3.5rem, 8vw, 6rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-underline-offset: 0.2em; }
+  :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
+  .dark :focus-visible { outline-color: var(--color-bg); }
+  .visually-hidden { position: absolute !important; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 10; padding: 0.75rem 1rem; background: var(--color-primary); color: var(--color-bg); border-radius: 0.6rem; font-weight: 700; }
+  .skip-link:focus { top: 1rem; }
+  .container { width: 100%; max-width: calc(68rem + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+  .eyebrow { margin-bottom: 0.9rem; color: var(--color-accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+  .dark .eyebrow { color: var(--color-on-dark-muted); }
+  .section { padding-block: var(--section-space); }
+  .tinted { background: var(--color-surface); }
+  .dark { background: var(--color-primary); color: var(--color-bg); }
+  .section-title { font-size: clamp(1.8rem, 4.2vw, 2.7rem); }
+  .section-head { max-width: 42rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
+  .section-head p:not(.eyebrow) { margin-top: 1rem; color: var(--color-muted); font-size: 1.05rem; }
+
+  .button { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.75rem 1.4rem; border: 1.5px solid transparent; border-radius: 0.65rem; font: inherit; font-weight: 700; font-size: 0.95rem; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease; }
+  .button-primary { background: var(--color-primary); color: var(--color-bg); }
+  .button-primary:hover { background: #1c1917; }
+  .button-light { background: var(--color-bg); color: var(--color-primary); }
+  .button-light:hover { background: #ebe7e2; }
+  .button-outline { border-color: var(--color-border); color: var(--color-primary); }
+  .button-outline:hover { border-color: var(--color-primary); }
+  .button-ghost { border-color: rgb(255 255 255 / 0.5); color: var(--color-bg); }
+  .button-ghost:hover { border-color: var(--color-bg); background: rgb(255 255 255 / 0.08); }
+
+  .site-header { position: sticky; top: 0; z-index: 5; background: rgb(250 248 245 / 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; }
+  .brand { display: grid; line-height: 1.2; text-decoration: none; }
+  .brand strong { font-family: var(--font-heading); font-size: 1.1rem; }
+  .brand span { color: var(--color-muted); font-size: 0.78rem; }
+  .header-actions { display: flex; align-items: center; gap: 0.5rem; }
+  .lang-toggle { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.5rem; padding: 0 0.6rem; border: 1px solid var(--color-border); border-radius: 0.55rem; background: transparent; color: var(--color-text); font: inherit; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; cursor: pointer; }
+  .lang-toggle:hover { border-color: var(--color-primary); }
+  .header-cta { display: none; }
+  @media (min-width: 720px) { .header-cta { display: inline-flex; min-height: 2.5rem; padding: 0.5rem 1rem; font-size: 0.875rem; } }
+
+  .hero { padding-block: clamp(3rem, 8vw, 5.5rem) clamp(3rem, 7vw, 5rem); }
+  .hero-grid { display: grid; gap: 3rem; align-items: center; }
+  @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.05fr 1fr; gap: 3.5rem; } }
+  .hero h1 { font-size: clamp(2.2rem, 5.6vw, 3.6rem); line-height: 1.06; }
+  .hero-lead { margin-top: 1.25rem; font-size: clamp(1.1rem, 2.4vw, 1.35rem); font-weight: 600; color: var(--color-accent); }
+  .hero-timing { margin-top: 0.6rem; color: var(--color-muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .trust-note { display: flex; align-items: flex-start; gap: 0.6rem; margin-top: 1.5rem; color: var(--color-muted); font-size: 0.95rem; }
+  .trust-note svg { flex-shrink: 0; margin-top: 0.2rem; color: var(--color-accent); }
+  .preview { position: relative; margin: 0; padding-bottom: 2rem; }
+  .preview-desktop { width: 100%; aspect-ratio: 1200 / 750; object-fit: cover; object-position: top; border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.45); }
+  .preview-mobile { position: absolute; right: -0.5rem; bottom: 0; width: 28%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: 1rem; border: 4px solid var(--color-primary); box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.55); }
+  .preview figcaption { margin-top: 0.75rem; padding-right: 32%; color: var(--color-muted); font-size: 0.85rem; }
+
+  .problem-grid { display: grid; gap: 1rem; }
+  @media (min-width: 820px) { .problem-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .problem { padding: 1.6rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .problem-number { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-bottom: 1rem; border-radius: 999px; background: #f1e3dc; color: var(--color-accent); font-weight: 700; }
+  .problem h3 { font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .problem p { color: var(--color-muted); }
+
+  .package-grid { display: grid; gap: 1.25rem; align-items: stretch; }
+  @media (min-width: 820px) { .package-grid { grid-template-columns: 1fr 1.15fr; } }
+  .package { display: flex; flex-direction: column; gap: 1.25rem; padding: clamp(1.5rem, 4vw, 2.25rem); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .package.featured { background: var(--color-primary); color: var(--color-bg); border-color: var(--color-primary); }
+  .package-tag { align-self: flex-start; padding: 0.3rem 0.75rem; border-radius: 999px; background: var(--color-accent); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .package h3 { font-size: 1.6rem; }
+  .price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.25rem 0.75rem; }
+  .price strong { font-family: var(--font-heading); font-size: 3rem; font-weight: 600; line-height: 1; }
+  .price span { color: var(--color-muted); font-size: 0.95rem; }
+  .featured .price span { color: var(--color-on-dark-muted); }
+  .features { display: grid; gap: 0.7rem; }
+  .features li { display: flex; gap: 0.65rem; align-items: flex-start; }
+  .features svg { flex-shrink: 0; margin-top: 0.3rem; color: var(--color-accent); }
+  .featured .features svg { color: #e9b9a3; }
+  .package .button { margin-top: auto; align-self: flex-start; }
+
+  .steps { display: grid; gap: 1rem; counter-reset: step; }
+  @media (min-width: 720px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .step { position: relative; padding: 1.5rem; background: var(--color-surface); border-radius: var(--radius-lg); counter-increment: step; }
+  .step::before { content: counter(step); display: block; margin-bottom: 0.75rem; font-family: var(--font-heading); font-size: 2.2rem; font-weight: 600; line-height: 1; color: var(--color-accent); }
+  .step h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .step p { color: var(--color-muted); font-size: 0.95rem; }
+
+  .payment { display: grid; gap: 1.5rem; align-items: center; padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: var(--radius-lg); background: #f1e3dc; }
+  @media (min-width: 820px) { .payment { grid-template-columns: 1.3fr 1fr; } }
+  .payment h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+  .payment p { margin-top: 0.75rem; color: #3f3a36; }
+  .payment-methods { display: grid; gap: 0.6rem; }
+  .payment-methods li { display: flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.1rem; background: var(--color-bg); border-radius: var(--radius); font-weight: 700; }
+
+  .examples { display: grid; gap: 1rem; }
+  @media (min-width: 720px) { .examples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .example { display: grid; gap: 0.4rem; padding: 1.5rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); text-decoration: none; transition: border-color 180ms ease; }
+  .example:hover { border-color: var(--color-primary); }
+  .example strong { font-family: var(--font-heading); font-size: 1.25rem; }
+  .example span { color: var(--color-muted); }
+  .example em { color: var(--color-accent); font-style: normal; font-weight: 700; font-size: 0.9rem; }
+
+  .faq { display: grid; gap: 0.75rem; max-width: 48rem; }
+  .faq details { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); }
+  .faq summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; font-weight: 700; cursor: pointer; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 1.4rem; font-weight: 400; line-height: 1; color: var(--color-accent); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { padding: 0 1.25rem 1.2rem; color: var(--color-muted); }
+
+  .contact-grid { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) { .contact-grid { grid-template-columns: 1.2fr 1fr; } }
+  .contact-grid .section-title { color: var(--color-bg); }
+  .contact-grid p { margin-top: 1rem; color: var(--color-on-dark-muted); font-size: 1.05rem; }
+  .contact-actions { display: grid; gap: 0.75rem; }
+  .seller { margin-top: 1.5rem; color: var(--color-on-dark-muted); font-size: 0.95rem; }
+
+  .site-footer { padding-block: 1.5rem; border-top: 1px solid var(--color-border); color: var(--color-muted); font-size: 0.85rem; }
+  .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="skip">Към съдържанието</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#top">
+      <strong>Къща Кръстопът</strong>
+      <span data-i18n="brandSub">Сайтове за къщи за гости</span>
+    </a>
+    <div class="header-actions">
+      <button class="lang-toggle" id="lang-toggle" type="button" lang="en"><span id="lang-toggle-code">EN</span><span class="visually-hidden" id="lang-toggle-name"> – English</span></button>
+      <a class="button button-primary header-cta" href="#contact" data-i18n="headerCta">Свържете се с нас</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow" data-i18n="heroEyebrow">За малки къщи за гости</p>
+        <h1 id="hero-title" data-i18n="heroTitle">Собствен сайт за вашата къща за гости — готов за преглед до 72 часа.</h1>
+        <p class="hero-lead" data-i18n="heroLead">Гостите ви пишат директно, без комисиона.</p>
+        <p class="hero-timing" data-i18n="heroTiming">Готов за преглед до 72 часа след като получим снимките и информацията.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="viber://chat?number=%2B359885477370" data-i18n="ctaViber">Пишете ни във Viber</a>
+          <a class="button button-outline" href="../demo-crossroad/index.html" data-i18n="ctaDemo">Вижте демото</a>
+        </div>
+        <p class="trust-note">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          <span data-i18n="heroTrust">Плащате едва след като видите и одобрите готовия сайт.</span>
+        </p>
+      </div>
+      <figure class="preview">
+        <img class="preview-desktop" src="img/demo-desktop.jpg" width="1200" height="750" alt="Демо сайт на Къща Кръстопът на компютър" data-i18n-alt="previewDesktopAlt">
+        <img class="preview-mobile" src="img/demo-mobile.jpg" width="390" height="844" alt="Същият сайт на телефон" data-i18n-alt="previewMobileAlt">
+        <figcaption data-i18n="previewCaption">Демото: нашата къща, на 4 езика, на компютър и на телефон.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section tinted" aria-labelledby="problem-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="problemEyebrow">Защо собствен сайт</p>
+        <h2 class="section-title" id="problem-title" data-i18n="problemTitle">Платформите са полезни, но не бива да са единственият ви канал</h2>
+      </div>
+      <ul class="problem-grid">
+        <li class="problem">
+          <span class="problem-number" aria-hidden="true">1</span>
+          <h3 data-i18n="problem1Title">Комисиона от всяка резервация</h3>
+          <p data-i18n="problem1Text">Booking.com и Airbnb удържат комисиона от всяка резервация. При директно запитване тази сума остава у вас.</p>
+        </li>
+        <li class="problem">
+          <span class="problem-number" aria-hidden="true">2</span>
+          <h3 data-i18n="problem2Title">Директен контакт, без посредник</h3>
+          <p data-i18n="problem2Text">Гост, който ви е намерил в Google или Facebook, трябва лесно да може да ви пише директно. Собственият сайт му дава този път.</p>
+        </li>
+        <li class="problem">
+          <span class="problem-number" aria-hidden="true">3</span>
+          <h3 data-i18n="problem3Title">На езика на госта</h3>
+          <p data-i18n="problem3Text">Гости от Турция, Гърция и чужбина търсят на свой език — описание на техния език ви прави по-лесни за избор.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="packages" aria-labelledby="packages-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="packagesEyebrow">Пакети</p>
+        <h2 class="section-title" id="packages-title" data-i18n="packagesTitle">Изберете откъде да започнете</h2>
+      </div>
+      <div class="package-grid">
+        <article class="package" aria-labelledby="package-language-title">
+          <h3 id="package-language-title" data-i18n="langPackTitle">Езиков пакет</h3>
+          <p class="price"><strong>€35</strong> <span data-i18n="langPackPriceNote">еднократно</span></p>
+          <ul class="features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="langPack1">Описанията ви за Booking, Airbnb и Google — пренаписани и преведени на английски, турски и гръцки</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="langPack2">5 готови шаблона за отговор на гости</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="langPack3">Готово до 24 часа</span></li>
+          </ul>
+          <a class="button button-outline" href="#contact" data-i18n="langPackCta">Искам езиковия пакет</a>
+        </article>
+
+        <article class="package featured" aria-labelledby="package-site-title">
+          <p class="package-tag" data-i18n="sitePackTag">Начална цена</p>
+          <h3 id="package-site-title" data-i18n="sitePackTitle">Ваш сайт</h3>
+          <p class="price"><strong>€99</strong> <span data-i18n="sitePackPriceNote">за първите 3 домакини, след това €149</span></p>
+          <ul class="features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack1">Всичко от Езиковия пакет</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack2">Сайт на 4 езика: български, английски, турски и гръцки</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack3">Формата подготвя запитването, а гостът го изпраща от своя Viber, WhatsApp или имейл — директно до вас</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack4">Безплатен хостинг</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack5">Готов за преглед до 72 часа след като получим снимките и информацията</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack6">Един кръг промени е включен</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack7">Собствен домейн по желание — около €10 на година, плаща се от вас</span></li>
+          </ul>
+          <a class="button button-light" href="#contact" data-i18n="sitePackCta">Искам сайт</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" aria-labelledby="steps-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="stepsEyebrow">Как работим</p>
+        <h2 class="section-title" id="steps-title" data-i18n="stepsTitle">Четири стъпки, без излишна техника</h2>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3 data-i18n="step1Title">Изпращате снимки и информация</h3><p data-i18n="step1Text">Във Viber или по имейл: снимки, стаи, цени, правила и контакти.</p></li>
+        <li class="step"><h3 data-i18n="step2Title">Подготвяме сайта</h3><p data-i18n="step2Text">Готов за преглед до 72 часа след като получим снимките и информацията, на 4 езика.</p></li>
+        <li class="step"><h3 data-i18n="step3Title">Одобрявате</h3><p data-i18n="step3Text">Разглеждате го и ни казвате какво да променим — един кръг промени е включен.</p></li>
+        <li class="step"><h3 data-i18n="step4Title">Плащате, сайтът тръгва</h3><p data-i18n="step4Text">След одобрението плащате и сайтът излиза онлайн.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="payment-title">
+    <div class="container">
+      <div class="payment">
+        <div>
+          <p class="eyebrow" data-i18n="paymentEyebrow">Плащане</p>
+          <h2 id="payment-title" data-i18n="paymentTitle">Плащате едва след като одобрите готовия сайт</h2>
+          <p data-i18n="paymentText">Не искаме нищо предварително. Първо виждате сайта си, после решавате.</p>
+        </div>
+        <ul class="payment-methods">
+          <li data-i18n="paymentRevolut">Revolut</li>
+          <li data-i18n="paymentCash">В брой</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" aria-labelledby="examples-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="examplesEyebrow">Примери</p>
+        <h2 class="section-title" id="examples-title" data-i18n="examplesTitle">Вижте как изглежда на живо</h2>
+      </div>
+      <div class="examples">
+        <a class="example" href="https://www.crossroadhouse.bg" target="_blank" rel="noopener noreferrer">
+          <strong>crossroadhouse.bg</strong>
+          <span data-i18n="example1Text">Нашият сайт (пример за собствен сайт на къща за гости)</span>
+          <em data-i18n="example1Cta">Отвори сайта →</em>
+        </a>
+        <a class="example" href="../demo-crossroad/index.html">
+          <strong data-i18n="example2Title">Демо на шаблона</strong>
+          <span data-i18n="example2Text">Нашата къща в шаблона, който ще получите — на български, английски, турски и гръцки.</span>
+          <em data-i18n="example2Cta">Отвори демото →</em>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="faqEyebrow">Въпроси</p>
+        <h2 class="section-title" id="faq-title" data-i18n="faqTitle">Често задавани въпроси</h2>
+      </div>
+      <div class="faq">
+        <details><summary data-i18n="faq1Q">Трябва ли ми домейн?</summary><p data-i18n="faq1A">Не. Сайтът работи на безплатен адрес, например ime-na-kashtata.pages.dev. Ако искате собствен домейн, той струва около €10 на година и се плаща от вас.</p></details>
+        <details><summary data-i18n="faq2Q">Чий е сайтът?</summary><p data-i18n="faq2A">Ваш — получавате всички файлове; ако хостингът е в наш акаунт, прехвърляме го при поискване.</p></details>
+        <details><summary data-i18n="faq3Q">Има ли месечна такса?</summary><p data-i18n="faq3A">Не. Хостингът е безплатен.</p></details>
+        <details><summary data-i18n="faq4Q">Мога ли по-късно да сменя цените?</summary><p data-i18n="faq4A">Да, просто ни пишете. Малките промени са безплатни през първите 3 месеца.</p></details>
+        <details><summary data-i18n="faq5Q">Има ли в сайта линк към вас?</summary><p data-i18n="faq5A">В долната част на сайта има малък линк към нас — махаме го при поискване.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="contact" aria-labelledby="contact-title">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow" data-i18n="contactEyebrow">Контакт</p>
+        <h2 class="section-title" id="contact-title" data-i18n="contactTitle">Пишете ни — ще ви отговорим лично</h2>
+        <p data-i18n="contactText">Изпратете ни името на къщата и няколко снимки. Ще ви кажем какво ни трябва още.</p>
+        <p class="seller" data-i18n="seller">Къща Кръстопът · ул. „Георги Бенковски“ 8, Ивайловград</p>
+      </div>
+      <div class="contact-actions">
+        <a class="button button-light" href="viber://chat?number=%2B359885477370" data-i18n="contactViber">Viber: +359 885 477 370</a>
+        <a class="button button-ghost" href="tel:+359885477370" data-i18n="contactPhone">Обадете се: +359 885 477 370</a>
+        <a class="button button-ghost" id="email-link" href="mailto:info@crossroadhouse.bg?subject=%D0%A1%D0%B0%D0%B9%D1%82%20%D0%B7%D0%B0%20%D0%BA%D1%8A%D1%89%D0%B0%20%D0%B7%D0%B0%20%D0%B3%D0%BE%D1%81%D1%82%D0%B8">info@crossroadhouse.bg</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p data-i18n="footerSeller">© 2026 Къща Кръстопът, Ивайловград</p>
+    <p><a href="https://www.crossroadhouse.bg" target="_blank" rel="noopener noreferrer">www.crossroadhouse.bg</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  const LANG_STORAGE_KEY = "offer-lang";
+  const EMAIL_SUBJECTS = { bg: "Сайт за къща за гости", en: "Website for my guesthouse" };
+  const EN = {
+    skip: "Skip to content", brandSub: "Websites for guesthouses", headerCta: "Get in touch",
+    heroEyebrow: "For small guesthouses", heroTitle: "Your own guesthouse website — ready for review within 72 hours.",
+    heroLead: "Guests message you directly, with no commission.",
+    heroTiming: "Ready for your review within 72 hours of receiving your photos and details.", ctaViber: "Message us on Viber", ctaDemo: "See the demo",
+    heroTrust: "You pay only after you have seen and approved the finished site.",
+    previewDesktopAlt: "Crossroad House demo site on a laptop", previewMobileAlt: "The same site on a phone",
+    previewCaption: "The demo: our own house, in 4 languages, on desktop and on a phone.",
+    problemEyebrow: "Why your own website", problemTitle: "Booking platforms are useful, but they should not be your only channel",
+    problem1Title: "Commission on every booking", problem1Text: "Booking.com and Airbnb deduct a commission from every booking. With a direct inquiry, that money stays with you.",
+    problem2Title: "A direct line, no middleman", problem2Text: "A guest who finds you on Google or Facebook should be able to write to you directly and easily. Your own site gives them that route.",
+    problem3Title: "In your guest's language", problem3Text: "Guests from Turkey, Greece and further afield search in their own language. A description in their language makes you an easier choice.",
+    packagesEyebrow: "Packages", packagesTitle: "Choose where to start",
+    langPackTitle: "Language pack", langPackPriceNote: "one-off",
+    langPack1: "Your Booking, Airbnb and Google descriptions rewritten and translated into English, Turkish and Greek",
+    langPack2: "5 ready-made reply templates for guests", langPack3: "Delivered within 24 hours", langPackCta: "I want the language pack",
+    sitePackTag: "Launch price", sitePackTitle: "Your own website", sitePackPriceNote: "for the first 3 hosts, then €149",
+    sitePack1: "Everything in the Language pack", sitePack2: "A website in 4 languages: Bulgarian, English, Turkish and Greek",
+    sitePack3: "The form prepares the inquiry and the guest sends it from their own Viber, WhatsApp or email, straight to you",
+    sitePack4: "Free hosting", sitePack5: "Ready for your review within 72 hours of receiving your photos and details",
+    sitePack6: "One round of changes included", sitePack7: "Your own domain if you want one: about €10 a year, paid by you", sitePackCta: "I want a website",
+    stepsEyebrow: "How it works", stepsTitle: "Four steps, no technical hassle",
+    step1Title: "You send photos and details", step1Text: "Via Viber or email: photos, rooms, prices, house rules and contacts.",
+    step2Title: "We build the site", step2Text: "Ready for your review within 72 hours of receiving your photos and details, in 4 languages.",
+    step3Title: "You approve it", step3Text: "Look it over and tell us what to change: one round of changes is included.",
+    step4Title: "You pay, the site goes live", step4Text: "Once you approve, you pay and the site goes live.",
+    paymentEyebrow: "Payment", paymentTitle: "You pay only after you approve the finished site",
+    paymentText: "We ask for nothing up front. You see your site first, then you decide.", paymentRevolut: "Revolut", paymentCash: "Cash",
+    examplesEyebrow: "Examples", examplesTitle: "See it live",
+    example1Text: "Our own website (an example of a guesthouse's own site)", example1Cta: "Open the site →",
+    example2Title: "Template demo", example2Text: "Our house in the template you will get, in Bulgarian, English, Turkish and Greek.", example2Cta: "Open the demo →",
+    faqEyebrow: "Questions", faqTitle: "Frequently asked questions",
+    faq1Q: "Do I need a domain?", faq1A: "No. The site works on a free address such as your-house-name.pages.dev. If you want your own domain, it costs about €10 a year and you pay for it.",
+    faq2Q: "Who owns the site?", faq2A: "You do. You get all the files; if the hosting is in our account, we transfer it to you on request.",
+    faq3Q: "Is there a monthly fee?", faq3A: "No. Hosting is free.",
+    faq4Q: "Can I change my prices later?", faq4A: "Yes, just send us a message. Small updates are free for the first 3 months.",
+    faq5Q: "Is there a link to you on my site?", faq5A: "There is a small link to us at the bottom of the site. We remove it on request.",
+    contactEyebrow: "Contact", contactTitle: "Write to us and we will reply personally",
+    contactText: "Send us the name of your house and a few photos. We will tell you what else we need.",
+    seller: "Къща Кръстопът (Crossroad House) · 8 Georgi Benkovski St., Ivaylovgrad, Bulgaria",
+    contactViber: "Viber: +359 885 477 370", contactPhone: "Call: +359 885 477 370", footerSeller: "© 2026 Къща Кръстопът, Ivaylovgrad",
+  };
+  const META_EN = {
+    title: "Your own guesthouse website — ready for review within 72 hours | Къща Кръстопът",
+    description: "A 4-language website for small guesthouses. The form prepares the inquiry and the guest sends it from their own Viber, WhatsApp or email straight to you, with no commission. Pay after approval.",
+  };
+  const state = { lang: "bg", originals: new Map(), originalTitle: document.title, originalDescription: "" };
+
+  function rememberOriginal(element, key, value) {
+    if (!state.originals.has(element)) state.originals.set(element, {});
+    const stored = state.originals.get(element);
+    if (!(key in stored)) stored[key] = value;
+    return stored[key];
+  }
+
+  function translateElements(lang) {
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const original = rememberOriginal(element, "text", element.textContent);
+      element.textContent = lang === "en" ? EN[element.dataset.i18n] || original : original;
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+      const original = rememberOriginal(element, "alt", element.alt);
+      element.alt = lang === "en" ? EN[element.dataset.i18nAlt] || original : original;
+    });
+  }
+
+  function updateDocumentMeta(lang) {
+    const description = document.querySelector('meta[name="description"]');
+    if (!state.originalDescription) state.originalDescription = description.content;
+    document.documentElement.lang = lang;
+    document.title = lang === "en" ? META_EN.title : state.originalTitle;
+    description.content = lang === "en" ? META_EN.description : state.originalDescription;
+    document.getElementById("email-link").href = "mailto:info@crossroadhouse.bg?subject=" + encodeURIComponent(EMAIL_SUBJECTS[lang]);
+  }
+
+  const TOGGLE_LANGUAGE_NAMES = { bg: " – Български", en: " – English" };
+
+  function updateToggle(lang) {
+    const target = lang === "en" ? "bg" : "en";
+    document.getElementById("lang-toggle").lang = target;
+    document.getElementById("lang-toggle-code").textContent = target.toUpperCase();
+    document.getElementById("lang-toggle-name").textContent = TOGGLE_LANGUAGE_NAMES[target];
+  }
+
+  function persistLang(lang) {
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch (error) {
+      console.warn("Language preference not saved:", error.message);
+    }
+    try {
+      const url = new URL(location.href);
+      if (lang === "en") url.searchParams.set("lang", "en");
+      else url.searchParams.delete("lang");
+      history.replaceState(null, "", url.href);
+    } catch (error) {
+      console.warn("Language not written to URL:", error.message);
+    }
+  }
+
+  function applyLang(lang) {
+    state.lang = lang;
+    translateElements(lang);
+    updateDocumentMeta(lang);
+    updateToggle(lang);
+  }
+
+  function initialLang() {
+    const query = new URLSearchParams(location.search).get("lang");
+    if (query === "en" || query === "bg") return query;
+    try {
+      return localStorage.getItem(LANG_STORAGE_KEY) === "en" ? "en" : "bg";
+    } catch (error) {
+      return "bg";
+    }
+  }
+
+  document.getElementById("lang-toggle").addEventListener("click", () => {
+    const next = state.lang === "en" ? "bg" : "en";
+    applyLang(next);
+    persistLang(next);
+  });
+  if (initialLang() === "en") applyLang("en");
+})();
+</script>
+</body>
+</html>
