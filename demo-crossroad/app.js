@@ -26,6 +26,10 @@
   const DEFAULT_COUNTRY_CALLING_CODE = "359";
   const MIN_INTERNATIONAL_DIGITS = 8;
   const MAX_INTERNATIONAL_DIGITS = 15;
+  /* Keeps the free-text note short enough for an SMS (the rest of the message is ~200 characters). */
+  const SMS_MAX_NOTE_LENGTH = 300;
+  /* Bulgarian mobile ranges after normalisation: +359 87x / 88x / 89x / 98x / 99x + 7 digits. */
+  const BULGARIAN_MOBILE_PATTERN = /^\+359(8[7-9]|9[89])\d{7}$/;
 
   /* Static, trusted markup only: config values never reach innerHTML. */
   const ICONS = {
@@ -45,6 +49,7 @@
     phone: '<path d="M5 3h3.5l2 5-2.5 1.5a11 11 0 0 0 6.5 6.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
     chat: '<path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5Z"/>',
+    sms: '<path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9.5L5 20.5V17a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7.5 9h9M7.5 12.5h6"/>',
     copy: '<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
     chevronLeft: '<path d="m15 18-6-6 6-6"/>',
     chevronRight: '<path d="m9 18 6-6-6-6"/>',
@@ -60,6 +65,41 @@
   const SOCIAL_LABELS = {
     facebook: "Facebook", instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube",
     booking: "Booking.com", airbnb: "Airbnb", google: "Google",
+  };
+
+  /*
+   * Fallbacks for interface texts added after the first client sites were built, so an older
+   * config.js still shows proper labels. A config.js "ui" entry with the same key always wins.
+   */
+  const BUILT_IN_UI = {
+    bg: {
+      sendSms: "Изпратете SMS",
+      smsNoteShortened: "За SMS бележката е съкратена.",
+      smsHint: "Текстът е копиран. Ако не се появи в съобщението, поставете го.",
+      pasteNote: "Ако текстът не се появи сам в {channels}, просто го поставете — копираме го автоматично, когато натиснете бутона.",
+      inquiryIntroNoChannels: "Попълнете формата и ще подготвим запитването вместо вас — копирайте го или ни се обадете директно. Отговаряме лично на всяко запитване.",
+    },
+    en: {
+      sendSms: "Send by SMS",
+      smsNoteShortened: "For the SMS, your note has been shortened.",
+      smsHint: "Text copied. If it does not appear in the message, paste it in.",
+      pasteNote: "If the text does not appear by itself in {channels}, just paste it: we copy it for you when you tap the button.",
+      inquiryIntroNoChannels: "Fill in the form and we will prepare the inquiry for you: copy it or call us directly. We reply personally to every request.",
+    },
+    tr: {
+      sendSms: "SMS ile gönder",
+      smsNoteShortened: "SMS için notunuz kısaltıldı.",
+      smsHint: "Metin kopyalandı. Mesajda görünmezse yapıştırın.",
+      pasteNote: "Metin {channels} içinde kendiliğinden görünmezse yapıştırmanız yeterli; düğmeye dokunduğunuzda metni sizin için kopyalıyoruz.",
+      inquiryIntroNoChannels: "Formu doldurun, talebinizi sizin için hazırlayalım; kopyalayın ya da bizi doğrudan arayın. Her talebe kişisel olarak yanıt veriyoruz.",
+    },
+    el: {
+      sendSms: "Αποστολή με SMS",
+      smsNoteShortened: "Για το SMS, η σημείωσή σας συντομεύτηκε.",
+      smsHint: "Το κείμενο αντιγράφηκε. Αν δεν εμφανιστεί στο μήνυμα, επικολλήστε το.",
+      pasteNote: "Αν το κείμενο δεν εμφανιστεί μόνο του στο {channels}, απλώς επικολλήστε το· το αντιγράφουμε για εσάς μόλις πατήσετε το κουμπί.",
+      inquiryIntroNoChannels: "Συμπληρώστε τη φόρμα και θα ετοιμάσουμε το αίτημα για εσάς· αντιγράψτε το ή καλέστε μας απευθείας. Απαντάμε προσωπικά σε κάθε αίτημα.",
+    },
   };
 
   /* ------------------------------------------------------------------ */
@@ -125,6 +165,37 @@
     if (!digits) return "";
     const base = "https://wa.me/" + digits;
     return text ? base + "?text=" + encodeURIComponent(text) : base;
+  }
+
+  /** sms: link with a prefilled body ("?body=" works on Android and on iOS 8+). */
+  function buildSmsUrl(phone, text) {
+    const normalized = normalizePhone(phone);
+    if (!normalized) return "";
+    return text ? "sms:" + normalized + "?body=" + encodeURIComponent(text) : "sms:" + normalized;
+  }
+
+  function isLikelyMobileNumber(phone) {
+    return BULGARIAN_MOBILE_PATTERN.test(normalizePhone(phone));
+  }
+
+  /*
+   * SMS button: contact.sms === false always hides it, contact.sms === true always shows it
+   * (for any usable number); otherwise it defaults to on only for Bulgarian mobile numbers,
+   * because landlines cannot receive SMS.
+   */
+  function isSmsChannelEnabled(contact) {
+    const details = contact || {};
+    if (details.sms === false || !normalizePhone(details.phone)) return false;
+    if (details.sms === true) return true;
+    return isLikelyMobileNumber(details.phone);
+  }
+
+  /** Shortens to maxLength code points (never splits an emoji or other surrogate pair). */
+  function truncateText(text, maxLength) {
+    const value = String(text || "");
+    const codePoints = Array.from(value);
+    if (codePoints.length <= maxLength) return value;
+    return codePoints.slice(0, maxLength - 1).join("").trimEnd() + "…";
   }
 
   function buildMailtoUrl(email, subject, body) {
@@ -319,8 +390,11 @@
 
     function uiIn(lang, key, params) {
       const strings = site.ui || {};
+      /* Same-language texts first (config, then built-in), then BG (config, then built-in). */
       const template = (strings[lang] && strings[lang][key]) ||
-        (strings[FALLBACK_LANG] && strings[FALLBACK_LANG][key]) || "";
+        (BUILT_IN_UI[lang] && BUILT_IN_UI[lang][key]) ||
+        (strings[FALLBACK_LANG] && strings[FALLBACK_LANG][key]) ||
+        (BUILT_IN_UI[FALLBACK_LANG] && BUILT_IN_UI[FALLBACK_LANG][key]) || "";
       return params ? fillTemplate(template, params) : template;
     }
 
@@ -862,6 +936,7 @@
       viber: normalizePhone(contact.viber),
       whatsapp: normalizePhone(contact.whatsapp),
     };
+    const isSmsEnabled = isSmsChannelEnabled(contact);
     /* The composed message is always in the site's default language, so the host can read it. */
     const hostLang = defaultLang;
     const MESSAGE_STRING_KEYS = ["messageGreeting", "messageDates", "messageGuests", "messageUnit", "messageName"];
@@ -966,7 +1041,7 @@
       return uiIn(hostLang, "messageGuestLanguage", { language: uiIn(hostLang, languageNameKey(state.lang)) });
     }
 
-    function buildInquiryText(values) {
+    function buildInquiryText(values, maxNoteLength) {
       const unit = selectedUnit(values.unitIndex);
       const strings = Object.fromEntries(MESSAGE_STRING_KEYS.map((key) => [key, uiIn(hostLang, key)]));
       return composeInquiryLines({
@@ -978,7 +1053,7 @@
         guests: values.guests,
         unitName: unit ? localize(unit.name, hostLang) : "",
         name: values.name,
-        message: values.message,
+        message: maxNoteLength ? truncateText(values.message, maxNoteLength) : values.message,
       }, strings);
     }
 
@@ -991,7 +1066,8 @@
       }, [icon(iconName), h("span", { text: label })]);
     }
 
-    function renderSendButtons(lines, values) {
+    /* Order: Viber, WhatsApp, email (when configured), then SMS and Call, then Copy. */
+    function renderSendButtons(lines, smsText, values) {
       const chatText = lines.join("\n");
       const subject = uiIn(hostLang, "emailSubject", { from: formatDate(values.from, hostLang), to: formatDate(values.to, hostLang) });
       const buttons = [];
@@ -1002,6 +1078,11 @@
       }
       if (phones.whatsapp) buttons.push(sendButton(buildWhatsAppUrl(phones.whatsapp, chatText), "chat", ui("sendWhatsApp"), true));
       if (contact.email) buttons.push(sendButton(buildMailtoUrl(contact.email, subject, lines.join("\r\n")), "mail", ui("sendEmail"), false));
+      if (isSmsEnabled) {
+        const smsButton = sendButton(buildSmsUrl(phones.phone, smsText), "sms", ui("sendSms"), false);
+        smsButton.addEventListener("click", () => copyMessage(ui("smsHint"), smsText));
+        buttons.push(smsButton);
+      }
       if (phones.phone) buttons.push(sendButton(buildTelUrl(phones.phone), "phone", ui("callNow") + " " + phoneLabel(), false));
       const copyButton = h("button", { type: "button", className: "button button--send" }, [icon("copy"), h("span", { text: ui("copyMessage") })]);
       copyButton.addEventListener("click", () => copyMessage(ui("copied")));
@@ -1009,14 +1090,23 @@
       byId("send-buttons").replaceChildren(...buttons);
     }
 
-    /* Shown before the guest taps anything: Viber may ignore the draft text on some versions. */
-    function renderResultNotes() {
+    /* Channels whose app may ignore the prefilled text (some Viber versions, some SMS apps). */
+    function channelsNeedingPaste() {
+      return [phones.viber && "Viber", isSmsEnabled && "SMS"].filter(Boolean);
+    }
+
+    /* Shown before the guest taps anything, and only when such a channel is offered. */
+    function renderResultNotes(isSmsNoteShortened) {
+      const smsTrimNote = byId("sms-trim-note");
+      smsTrimNote.hidden = !isSmsNoteShortened;
+      smsTrimNote.textContent = ui("smsNoteShortened");
       const languageNote = byId("message-language-note");
       languageNote.hidden = state.lang === hostLang;
       languageNote.textContent = ui("messageLanguageNote", { language: ui(languageNameKey(hostLang)) });
-      const viberNote = byId("viber-note");
-      viberNote.hidden = !phones.viber;
-      viberNote.textContent = ui("viberNote");
+      const pasteChannels = channelsNeedingPaste();
+      const pasteNote = byId("paste-note");
+      pasteNote.hidden = pasteChannels.length === 0;
+      pasteNote.textContent = pasteChannels.length ? ui("pasteNote", { channels: formatChannelList(pasteChannels) }) : "";
     }
 
     function copyWithSelectionFallback() {
@@ -1025,9 +1115,9 @@
       return document.execCommand && document.execCommand("copy");
     }
 
-    function copyMessage(successText) {
+    function copyMessage(successText, textOverride) {
       const status = byId("copy-status");
-      const message = byId("result-message").value;
+      const message = textOverride || byId("result-message").value;
       const clipboardWrite = root.navigator.clipboard && root.isSecureContext
         ? root.navigator.clipboard.writeText(message)
         : Promise.reject(new Error("Clipboard API unavailable"));
@@ -1038,10 +1128,12 @@
 
     function showInquiryResult(values) {
       const lines = buildInquiryText(values);
+      const smsText = buildInquiryText(values, SMS_MAX_NOTE_LENGTH).join("\n");
+      const isSmsNoteShortened = isSmsEnabled && truncateText(values.message, SMS_MAX_NOTE_LENGTH) !== values.message;
       byId("result-message").value = lines.join("\n");
       byId("copy-status").textContent = "";
-      renderResultNotes();
-      renderSendButtons(lines, values);
+      renderResultNotes(isSmsNoteShortened);
+      renderSendButtons(lines, smsText, values);
       byId("inquiry-form").hidden = true;
       byId("inquiry-result").hidden = false;
       byId("result-title").focus();
@@ -1099,7 +1191,7 @@
     }
 
     function messageChannelNames() {
-      return [phones.viber && "Viber", phones.whatsapp && "WhatsApp", contact.email && ui("channelEmail")].filter(Boolean);
+      return [phones.viber && "Viber", phones.whatsapp && "WhatsApp", contact.email && ui("channelEmail"), isSmsEnabled && "SMS"].filter(Boolean);
     }
 
     function formatChannelList(channels) {
@@ -1110,11 +1202,15 @@
       }
     }
 
+    /* A usable phone alone is enough for the form: the guest can still SMS, call or copy the text. */
     function renderInquiry() {
       const channels = messageChannelNames();
-      byId("inquiry-lead").hidden = channels.length === 0;
-      document.querySelector(".inquiry__card").hidden = channels.length === 0;
-      if (channels.length) byId("inquiry-lead").textContent = ui("inquiryIntro", { channels: formatChannelList(channels) });
+      const hasAnyChannel = channels.length > 0 || Boolean(phones.phone);
+      byId("inquiry-lead").hidden = !hasAnyChannel;
+      document.querySelector(".inquiry__card").hidden = !hasAnyChannel;
+      byId("inquiry-lead").textContent = channels.length
+        ? ui("inquiryIntro", { channels: formatChannelList(channels) })
+        : ui("inquiryIntroNoChannels");
       renderGuestOptions();
       renderUnitOptions();
       renderDirectContacts();
@@ -1257,8 +1353,8 @@
       });
       if (!hasCoordinates(site)) console.warn("config.js: geo.lat / geo.lon missing, the map is hidden.");
       if (!(site.booking && site.booking.maxGuests)) console.warn("config.js: booking.maxGuests is missing (defaults to 1).");
-      if (!phones.viber && !phones.whatsapp && !contact.email) {
-        console.warn("config.js: add contact.viber, contact.whatsapp or contact.email, otherwise the inquiry form is hidden.");
+      if (!phones.phone && !phones.viber && !phones.whatsapp && !contact.email) {
+        console.warn("config.js: add a usable contact.phone (or viber/whatsapp/email), otherwise the inquiry form is hidden.");
       }
     }
 
@@ -1288,6 +1384,7 @@
     localize, fillTemplate, isSafeLink, normalizePhone, toPhoneDigits, buildTelUrl, buildViberUrl, buildWhatsAppUrl,
     buildMailtoUrl, buildOsmEmbedUrl, buildGoogleMapsUrl, toIsoDate, addDaysIso, countNights,
     validateInquiry, composeInquiryLines, resolveInitialLang, absoluteUrl, pageUrlFor, buildStructuredData, buildSrcset,
+    buildSmsUrl, isSmsChannelEnabled, isLikelyMobileNumber, truncateText, SMS_MAX_NOTE_LENGTH, BUILT_IN_UI,
   };
 
   if (typeof module === "object" && module.exports) module.exports = publicApi;
