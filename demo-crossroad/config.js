@@ -285,8 +285,7 @@ window.SITE = {
 
   credit: {
     show: true,
-    label: { bg: "Сайт: Crossroad House Web", en: "Website: Crossroad House Web", tr: "Web sitesi: Crossroad House Web", el: "Ιστοσελίδα: Crossroad House Web" },
-    url: "https://www.crossroadhouse.bg",
+    label: { bg: "Сайт: Веселин", en: "Website: Veselin", tr: "Web sitesi: Veselin", el: "Ιστοσελίδα: Veselin" },
   },
 
   /* ------------------------------------------------------------------ */

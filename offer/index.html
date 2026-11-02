@@ -3,16 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Собствен сайт за вашата къща за гости — готов за преглед до 72 часа | Къща Кръстопът</title>
+<title>Собствен сайт за вашата къща за гости · 99 € · Веселин</title>
 <meta name="description" content="Сайт на 4 езика за малки къщи за гости. Формата подготвя запитването, а гостът го изпраща от своя Viber, WhatsApp, имейл или SMS директно до вас, без комисиона. Плащате след одобрение.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Къща Кръстопът">
+<meta property="og:site_name" content="Веселин · сайтове за къщи за гости">
 <meta property="og:title" content="Собствен сайт за вашата къща за гости — готов за преглед до 72 часа">
 <meta property="og:description" content="Гостите ви пишат директно, без комисиона. Сайт на български, английски, турски и гръцки. Плащате след като одобрите готовия сайт.">
 <meta property="og:image" content="https://veselin9931.github.io/guesthouse-web/offer/img/demo-desktop.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="750">
-<!-- og:url: set to the published address before sharing, e.g. https://USER.github.io/REPO/offer/ -->
 <meta property="og:url" content="https://veselin9931.github.io/guesthouse-web/offer/">
 <meta property="og:locale" content="bg_BG">
 <meta name="twitter:card" content="summary_large_image">
@@ -87,6 +86,8 @@
   .hero-lead { margin-top: 1.25rem; font-size: clamp(1.1rem, 2.4vw, 1.35rem); font-weight: 600; color: var(--color-accent); }
   .hero-timing { margin-top: 0.6rem; color: var(--color-muted); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .hero-call { margin-top: 0.9rem; color: var(--color-muted); }
+  .hero-call a { color: var(--color-text); font-weight: 700; white-space: nowrap; }
   .trust-note { display: flex; align-items: flex-start; gap: 0.6rem; margin-top: 1.5rem; color: var(--color-muted); font-size: 0.95rem; }
   .trust-note svg { flex-shrink: 0; margin-top: 0.2rem; color: var(--color-accent); }
   .preview { position: relative; margin: 0; padding-bottom: 2rem; }
@@ -166,12 +167,12 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#top">
-      <strong>Къща Кръстопът</strong>
-      <span data-i18n="brandSub">Сайтове за къщи за гости</span>
+      <strong data-i18n="brandName">Веселин</strong>
+      <span data-i18n="brandSub">сайтове за къщи за гости</span>
     </a>
     <div class="header-actions">
       <button class="lang-toggle" id="lang-toggle" type="button" lang="en"><span id="lang-toggle-code">EN</span><span class="visually-hidden" id="lang-toggle-name"> – English</span></button>
-      <a class="button button-primary header-cta" href="#contact" data-i18n="headerCta">Свържете се с нас</a>
+      <a class="button button-primary header-cta" href="#contact" data-i18n="headerCta">Свържете се с мен</a>
     </div>
   </div>
 </header>
@@ -183,20 +184,21 @@
         <p class="eyebrow" data-i18n="heroEyebrow">За малки къщи за гости</p>
         <h1 id="hero-title" data-i18n="heroTitle">Собствен сайт за вашата къща за гости — готов за преглед до 72 часа.</h1>
         <p class="hero-lead" data-i18n="heroLead">Гостите ви пишат директно, без комисиона.</p>
-        <p class="hero-timing" data-i18n="heroTiming">Готов за преглед до 72 часа след като получим снимките и информацията.</p>
+        <p class="hero-timing" data-i18n="heroTiming">Готов за преглед до 72 часа след като получа снимките и информацията.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="viber://chat?number=%2B359885477370" data-i18n="ctaViber">Пишете ни във Viber</a>
+          <a class="button button-primary" href="viber://chat?number=%2B359885477370" data-i18n="ctaViber">Пишете ми във Viber</a>
           <a class="button button-outline" href="../demo-crossroad/index.html" data-i18n="ctaDemo">Вижте демото</a>
         </div>
+        <p class="hero-call"><span data-i18n="heroCallLabel">или се обадете:</span> <a href="tel:+359885477370" data-i18n="heroCallNumber">0885 477 370</a></p>
         <p class="trust-note">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
           <span data-i18n="heroTrust">Плащате едва след като видите и одобрите готовия сайт.</span>
         </p>
       </div>
       <figure class="preview">
-        <img class="preview-desktop" src="img/demo-desktop.jpg" width="1200" height="750" alt="Демо сайт на Къща Кръстопът на компютър" data-i18n-alt="previewDesktopAlt">
+        <img class="preview-desktop" src="img/demo-desktop.jpg" width="1200" height="750" alt="Демо на шаблона на компютър" data-i18n-alt="previewDesktopAlt">
         <img class="preview-mobile" src="img/demo-mobile.jpg" width="390" height="844" alt="Същият сайт на телефон" data-i18n-alt="previewMobileAlt">
-        <figcaption data-i18n="previewCaption">Демото: нашата къща, на 4 езика, на компютър и на телефон.</figcaption>
+        <figcaption data-i18n="previewCaption">Демо на шаблона: къща за гости в Ивайловград, на 4 езика, на компютър и на телефон.</figcaption>
       </figure>
     </div>
   </section>
@@ -254,7 +256,7 @@
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack2">Сайт на 4 езика: български, английски, турски и гръцки</span></li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack3">Формата подготвя запитването, а гостът го изпраща от своя Viber, WhatsApp, имейл или SMS — директно до вас</span></li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack4">Безплатен хостинг</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack5">Готов за преглед до 72 часа след като получим снимките и информацията</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack5">Готов за преглед до 72 часа след като получа снимките и информацията</span></li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack6">Един кръг промени е включен</span></li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-i18n="sitePack7">Собствен домейн по желание — около €10 на година, плаща се от вас</span></li>
           </ul>
@@ -267,13 +269,13 @@
   <section class="section tinted" aria-labelledby="steps-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow" data-i18n="stepsEyebrow">Как работим</p>
+        <p class="eyebrow" data-i18n="stepsEyebrow">Как работи</p>
         <h2 class="section-title" id="steps-title" data-i18n="stepsTitle">Четири стъпки, без излишна техника</h2>
       </div>
       <ol class="steps">
-        <li class="step"><h3 data-i18n="step1Title">Изпращате снимки и информация</h3><p data-i18n="step1Text">Във Viber или по имейл: снимки, стаи, цени, правила и контакти.</p></li>
-        <li class="step"><h3 data-i18n="step2Title">Подготвяме сайта</h3><p data-i18n="step2Text">Готов за преглед до 72 часа след като получим снимките и информацията, на 4 езика.</p></li>
-        <li class="step"><h3 data-i18n="step3Title">Одобрявате</h3><p data-i18n="step3Text">Разглеждате го и ни казвате какво да променим — един кръг промени е включен.</p></li>
+        <li class="step"><h3 data-i18n="step1Title">Изпращате снимки и информация</h3><p data-i18n="step1Text">Във Viber: снимки, стаи, цени, правила и контакти.</p></li>
+        <li class="step"><h3 data-i18n="step2Title">Подготвям сайта</h3><p data-i18n="step2Text">Готов за преглед до 72 часа след като получа снимките и информацията, на 4 езика.</p></li>
+        <li class="step"><h3 data-i18n="step3Title">Одобрявате</h3><p data-i18n="step3Text">Разглеждате го и ми казвате какво да променя — един кръг промени е включен.</p></li>
         <li class="step"><h3 data-i18n="step4Title">Плащате, сайтът тръгва</h3><p data-i18n="step4Text">След одобрението плащате и сайтът излиза онлайн.</p></li>
       </ol>
     </div>
@@ -285,7 +287,7 @@
         <div>
           <p class="eyebrow" data-i18n="paymentEyebrow">Плащане</p>
           <h2 id="payment-title" data-i18n="paymentTitle">Плащате едва след като одобрите готовия сайт</h2>
-          <p data-i18n="paymentText">Не искаме нищо предварително. Първо виждате сайта си, после решавате.</p>
+          <p data-i18n="paymentText">Не искам нищо предварително. Първо виждате сайта си, после решавате.</p>
         </div>
         <ul class="payment-methods">
           <li data-i18n="paymentRevolut">Revolut</li>
@@ -299,17 +301,17 @@
     <div class="container">
       <div class="section-head">
         <p class="eyebrow" data-i18n="examplesEyebrow">Примери</p>
-        <h2 class="section-title" id="examples-title" data-i18n="examplesTitle">Вижте как изглежда на живо</h2>
+        <h2 class="section-title" id="examples-title" data-i18n="examplesTitle">Вижте примерите</h2>
       </div>
       <div class="examples">
         <a class="example" href="https://www.crossroadhouse.bg" target="_blank" rel="noopener noreferrer">
           <strong>crossroadhouse.bg</strong>
-          <span data-i18n="example1Text">Нашият сайт (пример за собствен сайт на къща за гости)</span>
+          <span data-i18n="example1Text">Пример: сайт на къща за гости в Ивайловград</span>
           <em data-i18n="example1Cta">Отвори сайта →</em>
         </a>
         <a class="example" href="../demo-crossroad/index.html">
           <strong data-i18n="example2Title">Демо на шаблона</strong>
-          <span data-i18n="example2Text">Нашата къща в шаблона, който ще получите — на български, английски, турски и гръцки.</span>
+          <span data-i18n="example2Text">Къща за гости в Ивайловград, показана в шаблона, който ще получите — на български, английски, турски и гръцки.</span>
           <em data-i18n="example2Cta">Отвори демото →</em>
         </a>
       </div>
@@ -324,10 +326,10 @@
       </div>
       <div class="faq">
         <details><summary data-i18n="faq1Q">Трябва ли ми домейн?</summary><p data-i18n="faq1A">Не. Сайтът работи на безплатен адрес, например ime-na-kashtata.pages.dev. Ако искате собствен домейн, той струва около €10 на година и се плаща от вас.</p></details>
-        <details><summary data-i18n="faq2Q">Чий е сайтът?</summary><p data-i18n="faq2A">Ваш — получавате всички файлове; ако хостингът е в наш акаунт, прехвърляме го при поискване.</p></details>
+        <details><summary data-i18n="faq2Q">Чий е сайтът?</summary><p data-i18n="faq2A">Ваш — получавате всички файлове; ако хостингът е в моя акаунт, прехвърлям го при поискване.</p></details>
         <details><summary data-i18n="faq3Q">Има ли месечна такса?</summary><p data-i18n="faq3A">Не. Хостингът е безплатен.</p></details>
-        <details><summary data-i18n="faq4Q">Мога ли по-късно да сменя цените?</summary><p data-i18n="faq4A">Да, просто ни пишете. Малките промени са безплатни през първите 3 месеца.</p></details>
-        <details><summary data-i18n="faq5Q">Има ли в сайта линк към вас?</summary><p data-i18n="faq5A">В долната част на сайта има малък линк към нас — махаме го при поискване.</p></details>
+        <details><summary data-i18n="faq4Q">Мога ли по-късно да сменя цените?</summary><p data-i18n="faq4A">Да, просто ми пишете. Малките промени са безплатни през първите 3 месеца.</p></details>
+        <details><summary data-i18n="faq5Q">Има ли в сайта бележка за вас?</summary><p data-i18n="faq5A">В долната част на сайта има малка бележка с моето име. Махам я при поискване.</p></details>
       </div>
     </div>
   </section>
@@ -336,14 +338,13 @@
     <div class="container contact-grid">
       <div>
         <p class="eyebrow" data-i18n="contactEyebrow">Контакт</p>
-        <h2 class="section-title" id="contact-title" data-i18n="contactTitle">Пишете ни — ще ви отговорим лично</h2>
-        <p data-i18n="contactText">Изпратете ни името на къщата и няколко снимки. Ще ви кажем какво ни трябва още.</p>
-        <p class="seller" data-i18n="seller">Къща Кръстопът · ул. „Георги Бенковски“ 8, Ивайловград</p>
+        <h2 class="section-title" id="contact-title" data-i18n="contactTitle">Пишете ми — ще ви отговоря лично</h2>
+        <p data-i18n="contactText">Изпратете ми името на къщата и няколко снимки. Ще ви кажа какво още ми трябва.</p>
+        <p class="seller" data-i18n="seller">Веселин · сайтове за къщи за гости</p>
       </div>
       <div class="contact-actions">
         <a class="button button-light" href="viber://chat?number=%2B359885477370" data-i18n="contactViber">Viber: +359 885 477 370</a>
         <a class="button button-ghost" href="tel:+359885477370" data-i18n="contactPhone">Обадете се: +359 885 477 370</a>
-        <a class="button button-ghost" id="email-link" href="mailto:info@crossroadhouse.bg?subject=%D0%A1%D0%B0%D0%B9%D1%82%20%D0%B7%D0%B0%20%D0%BA%D1%8A%D1%89%D0%B0%20%D0%B7%D0%B0%20%D0%B3%D0%BE%D1%81%D1%82%D0%B8">info@crossroadhouse.bg</a>
       </div>
     </div>
   </section>
@@ -351,8 +352,7 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p data-i18n="footerSeller">© 2026 Къща Кръстопът, Ивайловград</p>
-    <p><a href="https://www.crossroadhouse.bg" target="_blank" rel="noopener noreferrer">www.crossroadhouse.bg</a></p>
+    <p data-i18n="footerSeller">© 2026 Веселин · сайтове за къщи за гости</p>
   </div>
 </footer>
 
@@ -360,15 +360,15 @@
 (function () {
   "use strict";
   const LANG_STORAGE_KEY = "offer-lang";
-  const EMAIL_SUBJECTS = { bg: "Сайт за къща за гости", en: "Website for my guesthouse" };
   const EN = {
-    skip: "Skip to content", brandSub: "Websites for guesthouses", headerCta: "Get in touch",
+    skip: "Skip to content", brandName: "Veselin", brandSub: "websites for guesthouses", headerCta: "Get in touch",
     heroEyebrow: "For small guesthouses", heroTitle: "Your own guesthouse website — ready for review within 72 hours.",
     heroLead: "Guests message you directly, with no commission.",
-    heroTiming: "Ready for your review within 72 hours of receiving your photos and details.", ctaViber: "Message us on Viber", ctaDemo: "See the demo",
+    heroTiming: "Ready for your review within 72 hours of receiving your photos and details.", ctaViber: "Message me on Viber", ctaDemo: "See the demo",
+    heroCallLabel: "or call:", heroCallNumber: "+359 885 477 370",
     heroTrust: "You pay only after you have seen and approved the finished site.",
-    previewDesktopAlt: "Crossroad House demo site on a laptop", previewMobileAlt: "The same site on a phone",
-    previewCaption: "The demo: our own house, in 4 languages, on desktop and on a phone.",
+    previewDesktopAlt: "Template demo on a laptop", previewMobileAlt: "The same site on a phone",
+    previewCaption: "Template demo: a guesthouse in Ivaylovgrad, in 4 languages, on desktop and on a phone.",
     problemEyebrow: "Why your own website", problemTitle: "Booking platforms are useful, but they should not be your only channel",
     problem1Title: "Commission on every booking", problem1Text: "Booking.com and Airbnb deduct a commission from every booking. With a direct inquiry, that money stays with you.",
     problem2Title: "A direct line, no middleman", problem2Text: "A guest who finds you on Google or Facebook should be able to write to you directly and easily. Your own site gives them that route.",
@@ -383,28 +383,28 @@
     sitePack4: "Free hosting", sitePack5: "Ready for your review within 72 hours of receiving your photos and details",
     sitePack6: "One round of changes included", sitePack7: "Your own domain if you want one: about €10 a year, paid by you", sitePackCta: "I want a website",
     stepsEyebrow: "How it works", stepsTitle: "Four steps, no technical hassle",
-    step1Title: "You send photos and details", step1Text: "Via Viber or email: photos, rooms, prices, house rules and contacts.",
-    step2Title: "We build the site", step2Text: "Ready for your review within 72 hours of receiving your photos and details, in 4 languages.",
-    step3Title: "You approve it", step3Text: "Look it over and tell us what to change: one round of changes is included.",
+    step1Title: "You send photos and details", step1Text: "Via Viber: photos, rooms, prices, house rules and contacts.",
+    step2Title: "I build the site", step2Text: "Ready for your review within 72 hours of receiving your photos and details, in 4 languages.",
+    step3Title: "You approve it", step3Text: "Look it over and tell me what to change: one round of changes is included.",
     step4Title: "You pay, the site goes live", step4Text: "Once you approve, you pay and the site goes live.",
     paymentEyebrow: "Payment", paymentTitle: "You pay only after you approve the finished site",
-    paymentText: "We ask for nothing up front. You see your site first, then you decide.", paymentRevolut: "Revolut", paymentCash: "Cash",
-    examplesEyebrow: "Examples", examplesTitle: "See it live",
-    example1Text: "Our own website (an example of a guesthouse's own site)", example1Cta: "Open the site →",
-    example2Title: "Template demo", example2Text: "Our house in the template you will get, in Bulgarian, English, Turkish and Greek.", example2Cta: "Open the demo →",
+    paymentText: "I ask for nothing up front. You see your site first, then you decide.", paymentRevolut: "Revolut", paymentCash: "Cash",
+    examplesEyebrow: "Examples", examplesTitle: "See the examples",
+    example1Text: "Example: a guesthouse website in Ivaylovgrad", example1Cta: "Open the site →",
+    example2Title: "Template demo", example2Text: "A guesthouse in Ivaylovgrad shown in the template you will get, in Bulgarian, English, Turkish and Greek.", example2Cta: "Open the demo →",
     faqEyebrow: "Questions", faqTitle: "Frequently asked questions",
     faq1Q: "Do I need a domain?", faq1A: "No. The site works on a free address such as your-house-name.pages.dev. If you want your own domain, it costs about €10 a year and you pay for it.",
-    faq2Q: "Who owns the site?", faq2A: "You do. You get all the files; if the hosting is in our account, we transfer it to you on request.",
+    faq2Q: "Who owns the site?", faq2A: "You do. You get all the files; if the hosting is in my account, I transfer it to you on request.",
     faq3Q: "Is there a monthly fee?", faq3A: "No. Hosting is free.",
-    faq4Q: "Can I change my prices later?", faq4A: "Yes, just send us a message. Small updates are free for the first 3 months.",
-    faq5Q: "Is there a link to you on my site?", faq5A: "There is a small link to us at the bottom of the site. We remove it on request.",
-    contactEyebrow: "Contact", contactTitle: "Write to us and we will reply personally",
-    contactText: "Send us the name of your house and a few photos. We will tell you what else we need.",
-    seller: "Къща Кръстопът (Crossroad House) · 8 Georgi Benkovski St., Ivaylovgrad, Bulgaria",
-    contactViber: "Viber: +359 885 477 370", contactPhone: "Call: +359 885 477 370", footerSeller: "© 2026 Къща Кръстопът, Ivaylovgrad",
+    faq4Q: "Can I change my prices later?", faq4A: "Yes, just send me a message. Small updates are free for the first 3 months.",
+    faq5Q: "Is there a credit to you on my site?", faq5A: "There is a small credit with my name at the bottom of the site. I remove it on request.",
+    contactEyebrow: "Contact", contactTitle: "Write to me and I will reply personally",
+    contactText: "Send me the name of your house and a few photos. I will tell you what else I need.",
+    seller: "Veselin · websites for guesthouses",
+    contactViber: "Viber: +359 885 477 370", contactPhone: "Call: +359 885 477 370", footerSeller: "© 2026 Veselin · websites for guesthouses",
   };
   const META_EN = {
-    title: "Your own guesthouse website — ready for review within 72 hours | Къща Кръстопът",
+    title: "Your own guesthouse website · €99 · Veselin",
     description: "A 4-language website for small guesthouses. The form prepares the inquiry and the guest sends it from their own Viber, WhatsApp, email or SMS straight to you, with no commission. Pay after approval.",
   };
   const state = { lang: "bg", originals: new Map(), originalTitle: document.title, originalDescription: "" };
@@ -433,7 +433,6 @@
     document.documentElement.lang = lang;
     document.title = lang === "en" ? META_EN.title : state.originalTitle;
     description.content = lang === "en" ? META_EN.description : state.originalDescription;
-    document.getElementById("email-link").href = "mailto:info@crossroadhouse.bg?subject=" + encodeURIComponent(EMAIL_SUBJECTS[lang]);
   }
 
   const TOGGLE_LANGUAGE_NAMES = { bg: " – Български", en: " – English" };
